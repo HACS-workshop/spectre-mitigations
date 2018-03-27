@@ -47,7 +47,7 @@ in depth rather than due to any particular known exploit techniques.
 ### 1) Do not conditionally choose between constant and non-constant time
 
 It may be natural in crypto code to do the equivalent of:
-```
+```c
 if (Key.isPublic()) {
   NonConstantTimeAlgo(Key.data());
 } else {
@@ -92,7 +92,7 @@ If your cryptographic code tries to scrub private key data from registers or
 local buffers used during a constant-time algorithm, that scrubbing needs to be
 unconditional to be effective. For example, don't do things like this (somewhat
 silly) example:
-```
+```c
 bool ConstantTimeAlgo(uint64_t *data, size_t size) {
   uint64_t first_chunk = data[0];
   uint64_t second_chunk = data[1];
